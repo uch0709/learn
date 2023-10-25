@@ -1,0 +1,52 @@
+import random
+
+game=[0,0,0] #승리,무승부,패배
+result_game=[0,0,0] #승리,무승부,패배
+rpt=0
+f=1
+for i in range(1,101):
+    game=[0,0,0]
+    for j in range(1,10001):
+        a=random.randint(1,3) #가위,바위,보
+        b=random.randint(1,3)
+        rpt +=1
+        if a==1:#가위
+            if b==1:#가위
+                #print('무승부')
+                game[1] +=1
+            elif b==2:#바위
+                #print('패배')
+                game[2] +=1
+            else:#보
+                #print('승리')
+                game[0] +=1
+        elif a==2:#바위
+            if b==1:#가위
+                #print('승리')
+                game[0] +=1
+            elif b==2:#바위
+                #print('무승부')
+                game[1] +=1
+            else:#보
+                #print('패배')
+                game[2] +=1
+        else:#보
+            if b==1:#가위
+                #print('패배')
+                game[2] +=1
+            elif b==2:#바위
+                #print('승리')
+                game[0] +=1
+            else:#보
+                #print('무승부')
+                game[1] +=1
+        #print(f'승리:{game[0]/rpt},무승부:{game[1]/rpt},패배:{game[2]/rpt}')
+    if game[0]/rpt>game[1]/rpt and game[0]/rpt>game[2]/rpt:
+        result_game[0] +=1
+    elif game[1]/rpt>game[0]/rpt and game[1]/rpt>game[2]/rpt:
+        result_game[1] +=1
+    elif game[2]/rpt>game[0]/rpt and game[2]/rpt>game[1]/rpt:
+        result_game[2] +=1
+    else:
+        ...
+print(result_game)
