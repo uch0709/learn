@@ -1,0 +1,49 @@
+import random
+'''c=0
+ps=random.randint(1,50)
+while True:
+    
+    s=int(input())
+    if s == ps:
+        print("hello")
+        c += 1
+    else:
+        print("no")
+    print(f"{c}:")'''
+
+#\는 줄 연결
+'''print("hello\
+new world")
+lang='hi king'
+print(f"{lang[::-1]}")#[끝번호:0:-1]'''
+
+'''a='qwesfd'#a.lower() 문자열을 전부 소문자로 바꿈
+c=0
+for i in a:
+    if i=='a'or i=='e'or i=='i'or i=='u'or i=='o':
+        c +=1
+if c == 1:
+    print("True")
+else:
+    print("False")'''
+
+#회문(앞뒤가 똑같은~)
+'''a1='asoaid'
+a2='asdsa'
+a3='asdffdsa'
+a=input()
+cnt=True
+for i in range(len(a)//2):
+    #print(a1[i])
+    #print(a1[-1*(i+1)])
+    if a[i]!=a[-1*(i+1)]: #-1*(i+1) == -1-i
+        cnt=False
+        break
+if cnt == False:    #print(cnt)
+    print("False")
+else:
+    print("True")'''
+
+s='sfkhafiof'
+#print(dir(str))
+print(s.find('f'))
