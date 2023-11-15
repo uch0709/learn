@@ -1,0 +1,19 @@
+import turtle as tr
+import random as rd
+
+def random():
+    a=tr.Pen()
+    a.speed(0)
+    a.pensize(20)
+    while True:
+        a.color(rd.random(),rd.random(),rd.random())
+        a.forward(rd.randint(30, 100))
+        if a.xcor() >= 300 or a.xcor() <= -300 or a.ycor() >= 300 or a.ycor() <= -300:
+            a.left(rd.randint(10,50))
+            print(f"x= {round(a.xcor(),2)}, y= {round(a.ycor(),2)}")
+        if a.xcor() >= 400 or a.xcor() <= -400 or a.ycor() >= 400 or a.ycor() <= -400:
+            a.circle(20)
+            a.penup()
+            a.goto(0,0)
+            a.pendown()
+random()
