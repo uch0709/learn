@@ -1,0 +1,61 @@
+'''a='abcdefghijk'
+print(ord("a"))#유니코드
+print(chr(97))
+s="나는 %s,나이는%d"%(12,12)#옛날 기술 쓰지말자...
+print(s)'''
+
+'''a=input("전화:")
+print(f"{'*'*(len(a)-4)}{a[-4:]}")'''
+
+'''a='abcDEFGHIjkn1234'
+for i in a:
+    if i.islower(): #if 'a' <= i <= 'z' (아스키코드)
+        print(i.upper(),end='')
+    elif i.isupper():
+        print(i.lower(),end='')
+    else:
+        print(i,end='')'''
+
+'''a=input()
+len_flag=True
+upper_flag=False
+if len(a) < 5:
+    len_flag=False
+else:
+    for i in a:
+        if i.isupper():
+            upper_flag=True
+            break
+if len_flag and upper_flag:
+    print("사용가능")
+else:
+    print("불가능")'''
+
+'''a=['a','b','c','d','e']
+print(a[2:])
+a[1:4]=['as','df']
+print(a)'''
+
+'''a=[1,2,3,4563,64,2,14,17,5]
+print(sum(a))
+print(sum(a)/len(a))
+print(max(a))
+print(a[::-1])
+a.reverse()#reverse는 반환 X 반환값=None
+print(a)
+a.sort()
+print(a)
+a.sort(reverse=True)
+print(a)'''
+
+a=[1,2,3]+[4,5]
+l=[]
+while True:
+    a=int(input())
+    if a <= -1:
+        break
+    else:
+        l.append(a)
+print(sum(l))
+del l[0]
+l.remove(a)
