@@ -1,0 +1,70 @@
+import turtle as t
+a=t.Turtle() #head
+b=t.Turtle() #test
+
+l=[20,18,15,11,6,1]
+a.speed(0),b.speed(0)
+a.ht()
+
+def tawon(x,y,ang):
+    a.penup()
+    a.seth(ang)
+    a.goto(x,y)
+    a.pendown()
+    a.color('#F29661')
+    a.pencolor('#F29661')
+    a.begin_fill()
+    for i in range(31,1,-1):
+        a.forward(i//2)
+        a.right(3)
+    for i in range(1,31,1):
+        a.forward(i//2)
+        a.right(3)
+    for i in range(31,1,-1):
+        a.forward(i//2)
+        a.right(3)
+    for i in range(1,31,1):
+        a.forward(i//2)
+        a.right(3)
+    a.end_fill()
+
+def tra_l(x,y,ang):
+    a.penup()
+    a.seth(ang)
+    a.goto(x,y)
+    a.pendown()
+    a.color('#F29661')
+    a.pencolor('#F29661')
+    a.begin_fill()
+    a.forward(80)
+    a.left(150)
+    a.forward(95)
+    a.end_fill()
+
+def tra_r(x,y,ang):
+    a.penup()
+    a.seth(ang)
+    a.goto(x,y)
+    a.pendown()
+    a.color('#F29661')
+    a.pencolor('#F29661')
+    a.begin_fill()
+    a.forward(80)
+    a.right(150)
+    a.forward(95)
+    a.end_fill()
+
+def eye(x,y,sz):
+    a.penup()
+    a.goto(x,y)
+    a.pendown()
+    a.color("black")
+    a.begin_fill()
+    a.circle(sz)
+    a.end_fill()
+
+tawon(0,350,0)
+tra_l(-80,330,130)
+tra_r(80,330,50)
+eye(-85,290,9)
+eye(85,290,20)
