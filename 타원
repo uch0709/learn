@@ -1,0 +1,25 @@
+import turtle as t
+t=t.Pen()
+t.speed(0)
+t.pensize(2)
+t.ht()
+
+def tawon(a,b):
+    t.penup()
+    t.goto(0,b)
+    t.pendown()
+    t.begin_fill()
+    for i in range(0,a+1):
+        t.goto(i,int((((-1*(((b*i)/a)**2))+(b**2))**(1/2))))
+        print(int(((((-1*(((b*i)/a)**2))+(b**2))**(1/2)))))
+    for i in range(0,a+1):
+        t.goto(i,int(-1*(((-1*(((b*i)/a)**2))+(b**2))**(1/2))))
+        print(int(-1*((((-1*(((b*i)/a)**2))+(b**2))**(1/2)))))
+    for i in range(0,-1*(a+1),-1):
+        t.goto(i,int(-1*(((-1*(((b*i)/a)**2))+(b**2))**(1/2))))
+        print(int(-1*((((-1*(((b*i)/a)**2))+(b**2))**(1/2)))))
+    for i in range(0,-1*(a+1),-1):
+        t.goto(i,int((((-1*(((b*i)/a)**2))+(b**2))**(1/2))))
+        print(int(((((-1*(((b*i)/a)**2))+(b**2))**(1/2)))))
+    t.end_fill()
+tawon(200,100)
