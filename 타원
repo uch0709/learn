@@ -4,22 +4,22 @@ t.speed(0)
 t.pensize(2)
 t.ht()
 
-def tawon(a,b):
+def tawon(x,y,a,b):
     t.penup()
-    t.goto(0,b)
+    t.goto(x,y+b)
     t.pendown()
     t.begin_fill()
     for i in range(0,a+1):
-        t.goto(i,int((((-1*(((b*i)/a)**2))+(b**2))**(1/2))))
-        print(int(((((-1*(((b*i)/a)**2))+(b**2))**(1/2)))))
+        t.goto(x+i,y+int((((-1*(((b*i)/a)**2))+(b**2))**(1/2))))
+        #print(int(((((-1*(((b*i)/a)**2))+(b**2))**(1/2)))))
     for i in range(0,a+1):
-        t.goto(i,int(-1*(((-1*(((b*i)/a)**2))+(b**2))**(1/2))))
-        print(int(-1*((((-1*(((b*i)/a)**2))+(b**2))**(1/2)))))
+        t.goto(x+i,y+int(-1*(((-1*(((b*i)/a)**2))+(b**2))**(1/2))))
+        #print(int(-1*((((-1*(((b*i)/a)**2))+(b**2))**(1/2)))))
     for i in range(0,-1*(a+1),-1):
-        t.goto(i,int(-1*(((-1*(((b*i)/a)**2))+(b**2))**(1/2))))
-        print(int(-1*((((-1*(((b*i)/a)**2))+(b**2))**(1/2)))))
+        t.goto(x+i,y+int(-1*(((-1*(((b*i)/a)**2))+(b**2))**(1/2))))
+        #print(int(-1*((((-1*(((b*i)/a)**2))+(b**2))**(1/2)))))
     for i in range(0,-1*(a+1),-1):
-        t.goto(i,int((((-1*(((b*i)/a)**2))+(b**2))**(1/2))))
-        print(int(((((-1*(((b*i)/a)**2))+(b**2))**(1/2)))))
+        t.goto(x+i,y+int((((-1*(((b*i)/a)**2))+(b**2))**(1/2))))
+        #print(int(((((-1*(((b*i)/a)**2))+(b**2))**(1/2)))))
     t.end_fill()
-tawon(200,100)
+tawon(100,100,200,100)
