@@ -4,7 +4,7 @@ t.speed(0)
 t.pensize(2)
 t.ht()
 
-def tawon(x,y,a,b):
+def tawon(x,y,a,b): #x,y 시작 좌표 a,b 가로반지름,세로반지름
     t.penup()
     t.goto(x,y+b)
     t.pendown()
