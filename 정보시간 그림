@@ -63,6 +63,15 @@ def eye(x,y,sz):
     a.circle(sz)
     a.end_fill()
 
+def dr(a):
+    t.penup()
+    t.goto(0,0)
+    t.pendown()
+    for i in range(200):
+        t.color(l[i%14])
+        t.forward(i)
+        t.right((360//a))
+
 tawon(0,350,0)
 tra_l(-80,330,130)
 tra_r(80,330,50)
