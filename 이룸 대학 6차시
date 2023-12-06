@@ -1,0 +1,77 @@
+'''l='hello hi 3_nal'
+l1='hello;hi;3_nal'
+print(l.split())
+print(l1.split(';'))'''
+
+'''name='장원호,장우진,김창현,이주호,정승준,이성건,김재훈,용지민,노병호,안정환,김형진,유선재'
+f_n=name.split(',')
+find=[i[0]=='장' for i in f_n] #list comprehension
+print(sum(find))
+
+find=[i[0] for i in f_n]
+print(find.count('김'))'''
+
+'''s={1,2,5,3,3,4,5,2,4} #집합
+b={7,2,3,6}
+print(s|b) #합집합
+print(s^b) #대칭차집합
+print(s|b) #교집합
+print(s-b) #차집합
+'''
+
+'''x={'장우진':100,'정승준':50}
+print(x)
+x['장우진']=110
+print(x['장우진'])
+for i in x:
+    print(i)
+for i in x.keys():
+    print(i)
+for i in x.values():
+    print(i)
+for i,j in x.items():
+    print(i,j)
+x['새친구']=200
+print(x)'''
+
+'''e_k_dict=dict()
+while True:
+    word=input()
+    if word == 'q':
+        break
+    if (word in e_k_dict):
+        print('이미 추가된 단어')
+    else:
+        e_k_dict[f'{word}']=word
+print(e_k_dict)'''
+
+'''list=input().split()
+dict={}
+for i in list:
+    if i not in dict:
+        dict[i]=1
+    else:
+        dict[i]+=1
+print(dict)'''
+
+'''list=input().split()
+dict={i:list.count(i) for i in list} #comprehension
+print(max(dict.values()))
+max_d=[i for i in dict.keys() if dict[i] == max(dict.values())]
+print(max_d)
+max_d1={i:dict[i] for i in dict.keys() if dict[i] == max(dict.values())}
+print(max_d1)
+max_d2={i:j for i,j in dict.items() if dict[i] == max(dict.values())}
+print(max_d2)'''
+
+'''list=['hi','','hello']
+for i in list:
+    if i == '':
+        print(' ',end='')
+    else:
+        print(i,end='')
+print("\n")
+word='h e  s'
+print(word.split())
+#print(word.split(''))
+print(word.split(' '))'''
