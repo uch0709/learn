@@ -1,0 +1,39 @@
+from asomeneopixel import NEO
+import random as rd
+import time
+
+NEO.ready(4,8)
+light = AnalogPin(1)
+
+def write_rainb():
+    j=1
+    for j in range(10):
+        NEO.color((j+7)%8,0,0,0)      
+        NEO.color((j+6)%8,100,0,255)
+        NEO.color((j+5)%8,0,20,255)
+        NEO.color((j+4)%8,0,0,255)
+        NEO.color((j+3)%8,0,255,0)
+        NEO.color((j+2)%8,255,255,0)
+        NEO.color((j+1)%8,255,50,0)
+        NEO.color(j%8,255,0,0)
+        NEO.write()
+        time.sleep(0.4)
+        #j += 1
+
+def write_on():
+    for i in range(8):
+        NEO.color(i,100,100,100)
+    NEO.write()
+
+def write_off():
+    NEO.clear()
+    NEO.write()
+    
+while True:
+    lightV = light.read()
+    if lightV > 4000:
+        write_rainb()
+    elif lightV > 2000:
+        write_on()
+    else:
+        write_off()
