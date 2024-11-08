@@ -3,12 +3,14 @@ import random as rd
 import time
 import dht11
 import i2c_lcd
+import music
 
 lcd = i2c_lcd.create(1,10)
 dh = dht11.create(5)
 NEO.ready(4,8)
 light = AnalogPin(1)
 distance = AnalogPin(2)
+music.open(12)
 
 def write_rainb():
     j=1
@@ -34,6 +36,25 @@ def write_off():
     NEO.clear()
     NEO.write()
     
+def song():
+    music.tone(262)
+    delay(0.2)
+    music.tone(262)
+    delay(0.2)
+    music.tone(294)
+    delay(0.2)
+    music.tone(330)
+    delay(0.2)
+    music.tone(330)
+    delay(0.2)
+    music.tone(294)
+    delay(0.2)
+    music.tone(262)
+    delay(0.2)
+    music.tone(262)
+    delay(0.2)
+    music.mute()
+    
 while True:
     lightV = light.read()
     distanceV = distance.read()
@@ -41,18 +62,22 @@ while True:
     humidity = dh.humidity()
     temperature = dh.temperature()
     human_temp = dh.compute_heat_index(temperature,humidity)
-    
+    di = int(0.81 * temperature + 0.01 * humidity * (0.99 * temperature - 14.3) + 46.3)
+    #불쾌지수
     #print(f'{humidity}C, {temperature}%, {human_temp}')
     lcd.clear()
     lcd.move(0,0)
     lcd.write(f'{humidity}C, {temperature}%')
     lcd.move(0,1)
-    lcd.write(f'{human_temp}')
+    lcd.write(f'{human_temp}, {di}')
     
     
     if lightV > 4000:
         write_rainb()
+        song()
     elif lightV > 2000 and distanceV < 60:
         write_on()
+        music.mute()
     else:
         write_off()
+        music.mute()
