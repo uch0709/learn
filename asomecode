@@ -1,7 +1,11 @@
 from asomeneopixel import NEO
 import random as rd
 import time
+import dht11
+import i2c_lcd
 
+lcd = i2c_lcd.create(1,10)
+dh = dht11.create(5)
 NEO.ready(4,8)
 light = AnalogPin(1)
 distance = AnalogPin(2)
@@ -33,7 +37,19 @@ def write_off():
 while True:
     lightV = light.read()
     distanceV = distance.read()
-
+    dh.measure()
+    humidity = dh.humidity()
+    temperature = dh.temperature()
+    human_temp = dh.compute_heat_index(temperature,humidity)
+    
+    #print(f'{humidity}C, {temperature}%, {human_temp}')
+    lcd.clear()
+    lcd.move(0,0)
+    lcd.write(f'{humidity}C, {temperature}%')
+    lcd.move(0,1)
+    lcd.write(f'{human_temp}')
+    
+    
     if lightV > 4000:
         write_rainb()
     elif lightV > 2000 and distanceV < 60:
