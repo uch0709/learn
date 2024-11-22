@@ -5,15 +5,19 @@ import dht11
 import i2c_lcd
 import music
 
+
 lcd = i2c_lcd.create(1,10)
 dh = dht11.create(5)
 NEO.ready(4,8)
 light = AnalogPin(1)
 distance = AnalogPin(2)
 music.open(12)
+myservo = ServoPin(6)
+motora = ServoPin(19)
+motorb = ServoPin(20)
+air = AnalogPin(14)
 
 def write_rainb():
-    j=1
     for j in range(30):
         NEO.color((j+7)%8,0,0,0)      
         NEO.color((j+6)%8,100,0,255)
@@ -25,7 +29,6 @@ def write_rainb():
         NEO.color(j%8,255,0,0)
         NEO.write()
         time.sleep(0.1)
-        #j += 1
 
 def write_on():
     for i in range(8):
@@ -63,14 +66,33 @@ while True:
     temperature = dh.temperature()
     human_temp = dh.compute_heat_index(temperature,humidity)
     di = int(0.81 * temperature + 0.01 * humidity * (0.99 * temperature - 14.3) + 46.3)
-    #불쾌지수
-    #print(f'{humidity}C, {temperature}%, {human_temp}')
-    lcd.clear()
-    lcd.move(0,0)
-    lcd.write(f'{humidity}C, {temperature}%')
-    lcd.move(0,1)
-    lcd.write(f'{human_temp}, {di}')
+    airV = air.read()
     
+    
+    #불쾌지수
+    print(f'{temperature}C, {humidity}%, body:{human_temp}, di:{di}')
+    print(f'air:{airV}')
+    
+    
+    if di > 75 or airV > 400:
+        myservo.angle(0)
+        lcd.clear()
+        lcd.move(0,0)
+        lcd.write('window')
+        lcd.move(0,1)
+        lcd.write('open')
+        motora.duty(0)
+        motorb.duty(100)
+    else:
+        myservo.angle(90)
+        motora.duty(0)
+        motorb.duty(0)
+        lcd.clear()
+        lcd.move(0,0)
+        lcd.write(f'{humidity}C, {temperature}%')
+        lcd.move(0,1)
+        lcd.write(f'{human_temp}, {di}')
+        
     
     if lightV > 4000:
         write_rainb()
