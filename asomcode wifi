@@ -1,0 +1,53 @@
+from umqtt import MQTTClient
+import internet
+import dht11
+
+# DHT 센서 설정
+dh = dht11.create(5)
+
+# Wi-Fi 정보
+ssid = "KT_GiGA_7C35"
+password = "eazi55ec34"
+
+# MQTT 브로커 정보
+mqtt_server = "test.mosquitto.org"
+mqttPort = 1883
+
+def setup_wifi() :
+    internet.connect(ssid, password)
+    while internet.status() != 1010 :
+        delay(0.5)
+        print(".")
+    print("connected")
+
+def reconnect() :
+    while not client.is_connected() :
+        print("Attempting MQTT connecting ... ")
+        #clientId = "ID" + str(group_id) + "DEV" + str(device_number) 
+        client. connect()
+        if client.is_connected() :
+            print("connected")
+        else :
+            print("failed, rc=" + client.get_status() + " try again in 5 seconds")
+
+######사용자마다 다른 값으로 입력하세요######
+group_id = 3 #각자 다른번호 사용(or 팀번호) , 1반
+device_number = 2  # 팀원번호 , 1번
+client_id = 'kim1559' #이름+전화번호끝자리
+####
+##
+
+setup_wifi()
+
+client = MQTTClient(client_id, mqtt_server, mqttPort)
+while True :
+
+    if not client.is_connected() :
+        reconnect()
+    dh.measure()
+    t = dh. temperature()
+    mqttTopic = "ID" + str(group_id) + "DEV" + str(device_number) + "/temp"  #장치 ID2DEV1/temp
+    #print(mqttTopic)
+    msg = str(t)
+    client.publish(mqttTopic, msg)
+    delay(2)
